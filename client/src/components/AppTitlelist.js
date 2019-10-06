@@ -15,16 +15,14 @@ import PropTypes from 'prop-types';
 
 class AppTitlelist extends Component {
 
-    componentDidMount() {
-        this.props.getTitles();
-    }
+    // componentDidMount() {
+    //     this.props.getTitles();
+    // }
 
     render() {
         const { titles } = this.props.title;
         return (
             <Container>
-                
-
                 <ListGroup>
                     <TransitionGroup className="titles-list">
                         {titles.map(({ _id, TitleName }) => (
@@ -39,7 +37,6 @@ class AppTitlelist extends Component {
                 </ListGroup>
             </Container>
         )
-
     }
 }
 
