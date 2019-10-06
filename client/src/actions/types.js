@@ -1,0 +1,3 @@
+export const GET_TITLES = "GET_TITLES"
+export const SEARCH_TITLES = "SEARCH_TITLES"
+export const TITLES_LOADING = "TITLES_LOADING"

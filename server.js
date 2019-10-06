@@ -1,21 +1,17 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const config = require('config');
-
-const items = require('./routes/api/items');
-
+const db = require('./config/default').mongoURI;
+const titles = require('./routes/api/titles');
 const app = express();
 
-//bosyparse middleware
 app.use(bodyParser.json());
+app.use('/api/titles', titles);
 
-mongoose.connect(config.database.connection)
-    .then(() => console.log('MongoDB connect success'))
+mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
+    .then(() => console.log('connected'))
     .catch(err => console.log(err));
 
-app.use('/api/items', items);
-
-const port = process.env.port || 3000;
+const port = process.env.port || 6000;
 
 app.listen(port, () => console.log(`server on port ${port}`));
