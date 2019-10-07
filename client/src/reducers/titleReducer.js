@@ -12,11 +12,13 @@ export default function (state = initialState, action) {
                 ...state,
                 titles: action.payload,
                 loading: false
+                
             }
         case SEARCH_TITLES:
+                console.log(action.payload);
             return {
                 ...state,
-                titles: state.titles.filter(title => title.titleName.contains(`${action.payload}`))
+                titles: action.payload
             }
         case TITLES_LOADING:
             return {

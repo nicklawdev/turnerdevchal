@@ -9,15 +9,15 @@ import {
     TransitionGroup
 } from 'react-transition-group';
 import { connect } from 'react-redux';
-import { getTitles, searchTitles } from '../actions/titleActions'
+import { getTitles, searchTitles } from '../actions/titleActions';
 import PropTypes from 'prop-types';
 
 
 class AppTitlelist extends Component {
 
-    // componentDidMount() {
-    //     this.props.getTitles();
-    // }
+    componentDidMount() {
+        this.props.getTitles();
+    }
 
     render() {
         const { titles } = this.props.title;
@@ -41,7 +41,7 @@ class AppTitlelist extends Component {
 }
 
 AppTitlelist.propTypes = {
-    getTitles: PropTypes.func.isRequired, 
+    getTitles: PropTypes.func.isRequired,
     title: PropTypes.object.isRequired
 }
 
