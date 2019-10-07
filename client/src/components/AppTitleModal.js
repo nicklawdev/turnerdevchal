@@ -1,87 +1,87 @@
 import React, { Component } from 'react';
 import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Form,
-  FormGroup,
-  Label,
-  Input
+    Button,
+    Modal,
+    ModalHeader,
+    ModalBody,
+    Form,
+    FormGroup,
+    Label,
+    Input
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { searchTitles } from '../actions/titleActions';
-import PropTypes from 'prop-types';
 
 class AppTitleModal extends Component {
-  state = {
-    modal: false,
-    titleName: ''
-  };
-
-  toggle = () => {
-    this.setState({
-      modal: !this.state.modal
-    });
-  };
-
-  onChange = e => {
-    this.setState({ [e.target.titleName]: e.target.value });
-  };
-
-  onSubmit = e => {
-    e.preventDefault();
-
-    const searchTitleName = {
-      titleName: this.state.titleName
+    state = {
+        modal: false,
+        titleName: ''
     };
 
-    this.props.searchTitles(searchTitleName);
+    toggle = () => {
+        this.setState({
+            modal: !this.state.modal
+        });
+    };
 
-    this.toggle();
-  };
+    onChange = e => {
+        console.log(e.target)
+        this.setState({ [e.target.name]: e.target.value });
+    };
 
-  render() {
-    return (
-      <div>
-          <Button
-            color='dark'
-            style={{ marginBottom: '2rem' }}
-            onClick={this.toggle}
-          >
-            Search
+    onSubmit = e => {
+        e.preventDefault();
+
+        const searchInput = {
+            titleName: this.state.titleName
+        };
+
+        this.props.searchTitles(searchInput.titleName);
+
+        this.toggle();
+    };
+
+    render() {
+        return (
+            <div>
+                <Button
+                    color='dark'
+                    style={{ marginBottom: '2rem' }}
+                    onClick={this.toggle}
+                >
+                    Search
           </Button>
 
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Search</ModalHeader>
-          <ModalBody>
-            <Form onSubmit={this.onSubmit}>
-              <FormGroup>
-                <Label for='title'>Title</Label>
-                <Input
-                  type='text'
-                  name='name'
-                  id='item'
-                  placeholder='Search by title name'
-                  onChange={this.onChange}
-                />
-                <Button color='dark' style={{ marginTop: '2rem' }} block>
-                  Search Titles
-                </Button>
-              </FormGroup>
-            </Form>
-          </ModalBody>
-        </Modal>
-      </div>
-    );
-  }
+                <Modal isOpen={this.state.modal} toggle={this.toggle}>
+                    <ModalHeader toggle={this.toggle}>Search</ModalHeader>
+                    <ModalBody>
+                        <Form onSubmit={this.onSubmit}>
+                            <FormGroup>
+                                <Label for='title'>Title</Label>
+                                <Input
+                                    type='text'
+                                    name='titleName'
+                                    id='item'
+                                    placeholder='Search by title name'
+                                    onChange={this.onChange}
+                                />
+                                <Button color='dark' style={{ marginTop: '2rem' }} block>
+                                    Search Titles
+                                </Button>
+                            </FormGroup>
+                        </Form>
+                    </ModalBody>
+                </Modal>
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = state => ({
-  title: state.title,
+    title: state.title,
 });
 
 export default connect(
-  mapStateToProps,
-  { searchTitles }
+    mapStateToProps,
+    { searchTitles }
 )(AppTitleModal);

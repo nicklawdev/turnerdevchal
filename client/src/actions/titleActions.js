@@ -3,21 +3,26 @@ import axios from 'axios';
 
 export const getTitles = () => dispatch => {
     dispatch(titlesLoading());
-    const data = axios
+    axios
         .get('/api/titles')
         .then(res =>
             dispatch({
                 type: GET_TITLES,
-                payload: data
+                payload: res.data
             })
         )
 }
 
-export const searchTitles = (titleName) => {
-    return {
-        type: SEARCH_TITLES,
-        payload: titleName
-    }
+export const searchTitles = (titleName) => dispatch => {
+    dispatch(titlesLoading());
+    axios
+        .get(`/api/titles/${titleName}`)
+        .then(res =>
+            dispatch({
+                type: SEARCH_TITLES,
+                payload: res.data
+            })
+        )
 }
 
 export const titlesLoading = () => {

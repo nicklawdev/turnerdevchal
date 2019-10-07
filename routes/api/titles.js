@@ -6,7 +6,6 @@ const Title = require('../../models/Title');
 router.route('/')
     .get((req, res) => {
         Title.find({}, (err, titles) => {
-            console.log(titles);
             res.json(titles);
         })  
 })
