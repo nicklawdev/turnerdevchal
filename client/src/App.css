@@ -1,0 +1,8 @@
+.detailButton {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.title {
+    display: flex;
+}

@@ -1,8 +1,11 @@
-import { GET_TITLES, SEARCH_TITLES, TITLES_LOADING } from '../actions/types'
+import { GET_TITLE, GET_TITLES, SEARCH_TITLES, TITLES_LOADING } from '../actions/types'
 
 const initialState = {
     titles: [],
-    loading: false
+    loading: false,
+    titleDetail: { 
+        Storylines: []
+    }
 }
 
 export default function (state = initialState, action) {
@@ -12,13 +15,18 @@ export default function (state = initialState, action) {
                 ...state,
                 titles: action.payload,
                 loading: false
-                
             }
-        case SEARCH_TITLES:
-                console.log(action.payload);
+        case GET_TITLE:
             return {
                 ...state,
-                titles: action.payload
+                titleDetail: action.payload,
+                loading: false                      
+            }
+        case SEARCH_TITLES:
+            return {
+                ...state,
+                titles: action.payload,
+                loading: false
             }
         case TITLES_LOADING:
             return {
