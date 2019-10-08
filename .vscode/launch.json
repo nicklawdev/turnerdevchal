@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Launch Chrome",
             "url": "http://localhost:3000",
-            "webRoot": "${workspaceFolder}\\client"
+            "webRoot": "${workspaceFolder}\\client\\App.js"
         },
         {
             "type": "node",
